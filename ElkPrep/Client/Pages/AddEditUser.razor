@@ -25,9 +25,24 @@
 </EditForm>
 
 
-<EditForm Model="@arrow" class="form">
+<EditForm Model=@arrow OnSubmit=@SaveArrow class="form-control">
     <h3>Add Arrow</h3>
     <div class="row">
+        <div class="col-sm-2">
+            <label for="name">Name</label>
+            <InputText class="form-control" id="name" @bind-Value="arrow.Name" placeholder="Name"></InputText>
+        </div>
+        <div class="col-sm-4">
+            <label for="broadhead">BroadHead</label>
+            <InputText class="form-control"  id="broadhead" @bind-Value="arrow.Broadhead" placeholder="Broadhead"></InputText>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="fletch">Fletchings</label>
+            <InputNumber class="form-control" id="fletch" @bind-Value="arrow.Fletch" placeholder="Fletch"></InputNumber>
+        </div>
+
         <div class="col-sm-2">
             <label for="weight">Weight</label>
             <InputNumber class="form-control" id="weight" @bind-Value="arrow.Weight" placeholder="Weight"></InputNumber>
@@ -36,16 +51,12 @@
             <label for="length">Length</label>
             <InputNumber class="form-control" id="length" @bind-Value="arrow.Length" placeholder="Length"></InputNumber>
         </div>
-        <div class="col-sm-4">
-            <label for="broadhead">BoradHead</label>
-            <InputText class="form-control"  id="broadhead" @bind-Value="arrow.Broadhead" placeholder="Broadhead"></InputText>
-        </div>
     </div>
-    <btn class="btn btn-primary" type="submit">Add Arrow</btn>
+    <button class="btn btn-primary" type="submit">Add Arrow</button>
 </EditForm>
 
 
-<EditForm Model="@bow" class="form">
+<EditForm Model="@bow" OnSubmit=@SaveBow class="form-control">
     <h3>Add Bow</h3>
     <div class="row">
         <div class="col-sm-4">
@@ -60,8 +71,24 @@
             <label for="drawWeight">Draw Weight</label>
         <InputNumber class="form-control"  id="drawWeight" @bind-Value="bow.DrawWeight" placeholder="Draw Weight"></InputNumber>
       </div>
+
     </div>
-    <btn class="btn btn-primary" type="submit">Add Bow</btn>
+    <div class="row">
+        <div class="col-sm-4">
+            <label for="letOff">Let Offh</label>
+        <InputNumber class="form-control" id="letOff" @bind-Value="bow.LetOff" placeholder="Let Off"></InputNumber>
+      </div>
+      <div class="col-sm-4">
+            <label for="fps">FPS</label>
+        <InputNumber class="form-control"  id="fps" @bind-Value="bow.FPS" placeholder="FPS"></InputNumber>
+      </div>
+      <div class="col-sm-4">
+            <label for="range">Range</label>
+        <InputNumber class="form-control"  id="range" @bind-Value="bow.Range" placeholder="Range"></InputNumber>
+      </div>
+
+    </div>
+    <button class="btn btn-primary" type="submit">Add Bow</button>
 </EditForm>
 </main>
 
@@ -82,7 +109,6 @@
     protected async Task SaveUser()
     {
 
-            Console.WriteLine("Inside save user");
         if (user.Id != 0)
         {
             await Http.PutAsJsonAsync("/api/user/update", user);
@@ -96,4 +122,31 @@
     {
         NavigationManager.NavigateTo("/users");
     }
+
+
+
+    protected async Task SaveBow()
+    {
+        if (bow.Id != 0)
+        {
+            await Http.PutAsJsonAsync("/api/bow/update", bow);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("/api/bow/add", bow);
+        }
+    }
+
+    protected async Task SaveArrow()
+    {
+        if (arrow.Id != 0)
+        {
+            await Http.PutAsJsonAsync("/api/arrow/update", arrow);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("/api/arrow/add", arrow);
+        }
+    }
+
 }

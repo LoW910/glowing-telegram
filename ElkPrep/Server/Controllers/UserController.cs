@@ -1,14 +1,7 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ElkPrep.Server.DAL;
 using ElkPrep.Shared;
-using ElkPrep.Server.Interface;
+using ElkPrep.Server.Interfaces;
 
 namespace ElkPrep.Server.Controllers
 {
@@ -35,7 +28,7 @@ namespace ElkPrep.Server.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
-            User user = _IUser.GetUserData(id);
+            User user = _IUser.GetUser(id);
             if (user != null)
             {
                 return user;
@@ -47,19 +40,20 @@ namespace ElkPrep.Server.Controllers
         [HttpPost("add")]
         public void CreateUser(User user)
         {
+            Console.WriteLine(user);
             _IUser.AddUser(user);
         }
 
         // Update User
-        [HttpPut("/update/{id}")]
+        [HttpPut("update/{id}")]
         public void UpdateUser(User user)
         {
             _IUser.UpdateUser(user);
         }
 
         // Delete User
-        [HttpDelete("/delete/{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteUser(int id)
         {
             _IUser.DeleteUser(id);
             return Ok();

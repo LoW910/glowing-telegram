@@ -1,5 +1,5 @@
 ﻿using ElkPrep.Server.DAL;
-using ElkPrep.Server.Interface;
+using ElkPrep.Server.Interfaces;
 using ElkPrep.Shared;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +24,7 @@ namespace ElkPrep.Server.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to Add {user.FirstName} User");
+                Console.WriteLine($"Failed to Add User");
             }
         }
 
@@ -42,11 +42,11 @@ namespace ElkPrep.Server.Services
             } 
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to Remove {id} User");
+                Console.WriteLine($"Failed to Remove User");
             }
         }
 
-        public User GetUserData(int id)
+        public User GetUser(int id)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ElkPrep.Server.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine("Failled to Get User Data!");
+                Console.WriteLine("Failled to Get User!");
                 return null;
             }
         }
@@ -75,7 +75,7 @@ namespace ElkPrep.Server.Services
             } 
             catch (Exception ex)
             {
-                Console.WriteLine("Failed to get User Details");
+                Console.WriteLine("Failed to Get all Users");
                 return null;
             }
         }
@@ -90,7 +90,7 @@ namespace ElkPrep.Server.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine("Failed to Update {user.FirstName} User");
+                Console.WriteLine("Failed to Update User");
             }
         }
     }
