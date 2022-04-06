@@ -1,0 +1,99 @@
+﻿@page "/user/add";
+@using ElkPrep.Shared;
+@inject HttpClient Http;
+@inject NavigationManager NavigationManager;
+
+<main class=container>
+<EditForm Model=@user OnValidSubmit=@SaveUser class="form-control">
+    <DataAnnotationsValidator />
+    <h3>Add User</h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <label for="firstName">First Name</label>
+            <InputText class="form-control" id="firstName" @bind-Value="user.FirstName" placeholder="First Name"></InputText>
+        </div>
+        <div class="col-sm-4">
+            <label for="lastName">Last Name</label>
+            <InputText class="form-control" id="lastName" @bind-Value="user.LastName" placeholder="Last Name"></InputText>
+        </div>
+        <div class="col-sm-2">
+            <label for="age">Age</label>
+            <InputNumber class="form-control"  id="age" @bind-Value="user.Age" placeholder="Age"></InputNumber>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Add User</button>
+</EditForm>
+
+
+<EditForm Model="@arrow" class="form">
+    <h3>Add Arrow</h3>
+    <div class="row">
+        <div class="col-sm-2">
+            <label for="weight">Weight</label>
+            <InputNumber class="form-control" id="weight" @bind-Value="arrow.Weight" placeholder="Weight"></InputNumber>
+        </div>
+        <div class="col-sm-2">
+            <label for="length">Length</label>
+            <InputNumber class="form-control" id="length" @bind-Value="arrow.Length" placeholder="Length"></InputNumber>
+        </div>
+        <div class="col-sm-4">
+            <label for="broadhead">BoradHead</label>
+            <InputText class="form-control"  id="broadhead" @bind-Value="arrow.Broadhead" placeholder="Broadhead"></InputText>
+        </div>
+    </div>
+    <btn class="btn btn-primary" type="submit">Add Arrow</btn>
+</EditForm>
+
+
+<EditForm Model="@bow" class="form">
+    <h3>Add Bow</h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <label for="name">Bow Name</label>
+            <InputText class="form-control" id="name" @bind-Value="bow.Name" placeholder="Name"></InputText>
+        </div>
+      <div class="col-sm-4">
+            <label for="drawLength">Draw Length</label>
+        <InputNumber class="form-control" id="drawLength" @bind-Value="bow.DrawLength" placeholder="Draw Length"></InputNumber>
+      </div>
+      <div class="col-sm-4">
+            <label for="drawWeight">Draw Weight</label>
+        <InputNumber class="form-control"  id="drawWeight" @bind-Value="bow.DrawWeight" placeholder="Draw Weight"></InputNumber>
+      </div>
+    </div>
+    <btn class="btn btn-primary" type="submit">Add Bow</btn>
+</EditForm>
+</main>
+
+
+
+@code {
+    [Parameter]
+    public int userId { get; set; }
+
+
+
+    protected User user = new();
+    protected Arrow arrow = new();
+    protected Bow bow = new();
+
+
+
+    protected async Task SaveUser()
+    {
+
+            Console.WriteLine("Inside save user");
+        if (user.Id != 0)
+        {
+            await Http.PutAsJsonAsync("/api/user/update", user);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("/api/user/add", user);
+        }
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/users");
+    }
+}

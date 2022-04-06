@@ -1,0 +1,45 @@
+﻿@page "/users"
+@using ElkPrep.Shared
+@inject HttpClient Http;
+<h3>Users Details</h3>
+<main class=container>
+    @foreach (var person in searchUserData)
+    {
+        <EditForm Model="@user"class="form">
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="firstName">First Name</label>
+                    <InputText class="form-control" id="firstName" @bind-Value="person.FirstName"></InputText>
+                </div>
+                <div class="col-sm-4">
+                    <label for="lastName">Last Name</label>
+                    <InputText class="form-control" id="lastName" @bind-Value="person.LastName"></InputText>
+                </div>
+                <div class="col-sm-2">
+                    <label for="age">Age</label>
+                    <InputNumber class="form-control"  id="age" @bind-Value="person.Age"></InputNumber>
+                </div>
+            </div>
+        </EditForm>
+    }
+</main>
+
+@code {
+    protected List<User> userList = new();
+    protected List<User> searchUserData = new();
+    protected User user = new();
+    protected string SearchString { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUsers();
+    }
+
+    protected async Task GetUsers()
+    {
+        userList = await Http.GetFromJsonAsync<List<User>>("/api/user");
+        searchUserData = userList;
+    }
+
+
+}
