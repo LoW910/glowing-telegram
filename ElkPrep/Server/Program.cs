@@ -1,5 +1,5 @@
 using ElkPrep.Server.DAL;
-using ElkPrep.Server.Interface;
+using ElkPrep.Server.Interfaces;
 using ElkPrep.Server.Services;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ElkPrepContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IUser, UserService>();
+builder.Services.AddTransient<IBow, BowService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

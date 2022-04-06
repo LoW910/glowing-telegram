@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElkPrep.Server.Migrations
 {
     [DbContext(typeof(ElkPrepContext))]
-    [Migration("20220406173113_AddedUsersBowsArrowsToElkPrepDb")]
+    [Migration("20220406204523_AddedUsersBowsArrowsToElkPrepDb")]
     partial class AddedUsersBowsArrowsToElkPrepDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,16 +28,13 @@ namespace ElkPrep.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Broadhead")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -46,21 +43,16 @@ namespace ElkPrep.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Fletch")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.Property<int>("Length")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Weight")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -72,8 +64,7 @@ namespace ElkPrep.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -84,29 +75,22 @@ namespace ElkPrep.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("DrawLength")
-                        .IsUnicode(false)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("DrawWeight")
-                        .IsUnicode(false)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("FPS")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.Property<int>("LetOff")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Range")
-                        .IsUnicode(false)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -118,15 +102,12 @@ namespace ElkPrep.Server.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Age")
-                        .IsUnicode(false)
-                        .HasColumnType("int")
-                        .HasColumnName("Age");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -136,15 +117,11 @@ namespace ElkPrep.Server.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

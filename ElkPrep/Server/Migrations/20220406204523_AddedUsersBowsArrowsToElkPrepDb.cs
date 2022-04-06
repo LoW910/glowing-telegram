@@ -15,11 +15,11 @@ namespace ElkPrep.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Fletch = table.Column<int>(type: "int", unicode: false, nullable: false),
-                    Weight = table.Column<int>(type: "int", unicode: false, nullable: false),
-                    Length = table.Column<int>(type: "int", unicode: false, nullable: false),
-                    Broadhead = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fletch = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false),
+                    Length = table.Column<int>(type: "int", nullable: false),
+                    Broadhead = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -34,12 +34,12 @@ namespace ElkPrep.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    DrawLength = table.Column<decimal>(type: "decimal(18,2)", unicode: false, nullable: false),
-                    DrawWeight = table.Column<decimal>(type: "decimal(18,2)", unicode: false, nullable: false),
-                    LetOff = table.Column<int>(type: "int", unicode: false, nullable: false),
-                    FPS = table.Column<int>(type: "int", unicode: false, nullable: false),
-                    Range = table.Column<int>(type: "int", unicode: false, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DrawLength = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DrawWeight = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LetOff = table.Column<int>(type: "int", nullable: true),
+                    FPS = table.Column<int>(type: "int", nullable: true),
+                    Range = table.Column<int>(type: "int", nullable: true),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -54,9 +54,9 @@ namespace ElkPrep.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Age = table.Column<int>(type: "int", unicode: false, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
