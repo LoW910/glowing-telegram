@@ -9,11 +9,11 @@
         public Arrow Arrow { get; set; }
 
 
-        public Shot(bool vital, int pointValue, Arrow arrow )
-        {
-            Vital = vital;
-            PointValue = pointValue;
+        //public Shot(bool vital, int pointValue, Arrow arrow )
+        //{
+        //    Vital = vital;
+        //    PointValue = pointValue;
 
-        }
+        //}
     }
 }

@@ -4,6 +4,7 @@ using ElkPrep.Server.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElkPrep.Server.Migrations
 {
     [DbContext(typeof(ElkPrepContext))]
-    partial class ElkPrepContextModelSnapshot : ModelSnapshot
+    [Migration("20220407021807_AddedUserIdToArrowsListBowsArrowsTargetsInUser")]
+    partial class AddedUserIdToArrowsListBowsArrowsTargetsInUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,39 +111,6 @@ namespace ElkPrep.Server.Migrations
                     b.ToTable("bows", (string)null);
                 });
 
-            modelBuilder.Entity("ElkPrep.Shared.Shot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArrowId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PointValue")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TargetId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Vital")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArrowId");
-
-                    b.HasIndex("TargetId");
-
-                    b.ToTable("Shot");
-                });
-
             modelBuilder.Entity("ElkPrep.Shared.Target", b =>
                 {
                     b.Property<int>("Id")
@@ -220,31 +189,11 @@ namespace ElkPrep.Server.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("ElkPrep.Shared.Shot", b =>
-                {
-                    b.HasOne("ElkPrep.Shared.Arrow", "Arrow")
-                        .WithMany()
-                        .HasForeignKey("ArrowId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ElkPrep.Shared.Target", null)
-                        .WithMany("Shots")
-                        .HasForeignKey("TargetId");
-
-                    b.Navigation("Arrow");
-                });
-
             modelBuilder.Entity("ElkPrep.Shared.Target", b =>
                 {
                     b.HasOne("ElkPrep.Shared.User", null)
                         .WithMany("Targets")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("ElkPrep.Shared.Target", b =>
-                {
-                    b.Navigation("Shots");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.User", b =>

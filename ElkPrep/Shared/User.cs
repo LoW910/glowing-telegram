@@ -9,11 +9,11 @@ namespace ElkPrep.Shared
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
+        public List<Arrow> Arrows { get; set; }
+        public List<Bow> Bows { get; set; }
+        public List<Target> Targets { get; set; }
         public DateTime DateUpdated { get; set; }
         public DateTime DateCreated { get; set; }
-        List<Arrow> Arrows { get; set; }
-        List<Bow> Bows { get; set; }
-        List<Target> Targets { get; set; }
 
 
         //public User(string firstName, string lastName, int age)
