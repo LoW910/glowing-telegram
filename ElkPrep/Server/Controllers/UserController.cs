@@ -40,7 +40,6 @@ namespace ElkPrep.Server.Controllers
         [HttpPost("add")]
         public void CreateUser(User user)
         {
-            Console.WriteLine(user);
             _IUser.AddUser(user);
         }
 

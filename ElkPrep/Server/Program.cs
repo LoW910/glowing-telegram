@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ElkPrepContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IUser, UserService>();
 builder.Services.AddTransient<IBow, BowService>();
+builder.Services.AddTransient<IArrow, ArrowService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
