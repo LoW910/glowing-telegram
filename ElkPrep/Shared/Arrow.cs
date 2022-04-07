@@ -11,6 +11,7 @@ namespace ElkPrep.Shared
         public int Weight { get; set; }
         public int Length { get; set; }
         public string Broadhead { get; set; }
+        public int BowId { get; set; }
         public DateTime DateUpdated { get; set; }
         public DateTime DateCreated { get; set; }
 
