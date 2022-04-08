@@ -6,11 +6,8 @@
         public string Name { get; set; }
         public int Weight { get; set; }
         public int Blades { get; set; }
+        public Arrow Arrow { get; set; }
 
-        public Broadhead(string name, int weight)
-        {
-            Name = name;
-            Weight = weight;
-        }
+
     }
 }

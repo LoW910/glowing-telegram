@@ -12,7 +12,7 @@ namespace ElkPrep.Shared
         public int LetOff { get; set; }
         public int FPS { get; set; }
         public int Range { get; set; }
-        List<Arrow> Arrows { get; set; }
+        public Arrow? Arrow { get; set; }
         public DateTime DateUpdated { get; set; }
         public DateTime DateCreated { get; set; }
 

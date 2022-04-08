@@ -30,13 +30,6 @@ namespace ElkPrep.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BowId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Broadhead")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -74,6 +67,9 @@ namespace ElkPrep.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("ArrowId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -104,9 +100,44 @@ namespace ElkPrep.Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ArrowId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("bows", (string)null);
+                });
+
+            modelBuilder.Entity("ElkPrep.Shared.Broadhead", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArrowId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Blades")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArrowId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Broadhead");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.Shot", b =>
@@ -127,7 +158,7 @@ namespace ElkPrep.Server.Migrations
                     b.Property<int>("PointValue")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TargetId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Vital")
@@ -137,7 +168,7 @@ namespace ElkPrep.Server.Migrations
 
                     b.HasIndex("ArrowId");
 
-                    b.HasIndex("TargetId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Shot");
                 });
@@ -160,6 +191,9 @@ namespace ElkPrep.Server.Migrations
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ShotId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
@@ -170,6 +204,8 @@ namespace ElkPrep.Server.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ShotId");
 
                     b.HasIndex("UserId");
 
@@ -208,16 +244,39 @@ namespace ElkPrep.Server.Migrations
 
             modelBuilder.Entity("ElkPrep.Shared.Arrow", b =>
                 {
-                    b.HasOne("ElkPrep.Shared.User", null)
+                    b.HasOne("ElkPrep.Shared.User", "User")
                         .WithMany("Arrows")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.Bow", b =>
                 {
+                    b.HasOne("ElkPrep.Shared.Arrow", "Arrow")
+                        .WithMany()
+                        .HasForeignKey("ArrowId");
+
                     b.HasOne("ElkPrep.Shared.User", null)
                         .WithMany("Bows")
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Arrow");
+                });
+
+            modelBuilder.Entity("ElkPrep.Shared.Broadhead", b =>
+                {
+                    b.HasOne("ElkPrep.Shared.Arrow", "Arrow")
+                        .WithMany()
+                        .HasForeignKey("ArrowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ElkPrep.Shared.User", null)
+                        .WithMany("Broadheads")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Arrow");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.Shot", b =>
@@ -228,23 +287,24 @@ namespace ElkPrep.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ElkPrep.Shared.Target", null)
+                    b.HasOne("ElkPrep.Shared.User", null)
                         .WithMany("Shots")
-                        .HasForeignKey("TargetId");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Arrow");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.Target", b =>
                 {
+                    b.HasOne("ElkPrep.Shared.Shot", "Shot")
+                        .WithMany()
+                        .HasForeignKey("ShotId");
+
                     b.HasOne("ElkPrep.Shared.User", null)
                         .WithMany("Targets")
                         .HasForeignKey("UserId");
-                });
 
-            modelBuilder.Entity("ElkPrep.Shared.Target", b =>
-                {
-                    b.Navigation("Shots");
+                    b.Navigation("Shot");
                 });
 
             modelBuilder.Entity("ElkPrep.Shared.User", b =>
@@ -252,6 +312,10 @@ namespace ElkPrep.Server.Migrations
                     b.Navigation("Arrows");
 
                     b.Navigation("Bows");
+
+                    b.Navigation("Broadheads");
+
+                    b.Navigation("Shots");
 
                     b.Navigation("Targets");
                 });

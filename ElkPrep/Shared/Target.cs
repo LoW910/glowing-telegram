@@ -8,7 +8,8 @@
         public decimal Length { get; set; }
         public decimal VitalSize { get; set; }
         public int Points { get; set; }
-        public List<Shot> Shots { get; set; }
+        //public User User { get; set; }
+        public Shot? Shot { get; set; }
 
         //public Target(string name, decimal width, decimal length)
         //{

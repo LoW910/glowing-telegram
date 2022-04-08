@@ -8,7 +8,6 @@
         public int PointValue { get; set; }
         public Arrow Arrow { get; set; }
 
-
         //public Shot(bool vital, int pointValue, Arrow arrow )
         //{
         //    Vital = vital;
