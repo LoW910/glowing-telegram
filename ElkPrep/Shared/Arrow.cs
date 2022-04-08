@@ -10,8 +10,9 @@ namespace ElkPrep.Shared
         public int Fletch { get; set; }
         public int Weight { get; set; }
         public int Length { get; set; }
-        public string Broadhead { get; set; }
-        public int BowId { get; set; }
+        //public Broadhead BroadheadId { get; set; }
+        public User? User { get; set; }
+        //public Bow Bow { get; set; }
         public DateTime DateUpdated { get; set; }
         public DateTime DateCreated { get; set; }
 
