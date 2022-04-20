@@ -1,0 +1,16 @@
+﻿@inject HttpClient Http;
+@inject NavigationManager NavigationManager;
+
+<button class="btn btn-primary" @onclick="(() => EditUser(Id))">Edit</button>
+
+@code {
+
+        [Parameter]
+        public int Id { get; set; }
+
+        public void EditUser(int id)
+        {
+            NavigationManager.NavigateTo($"/user/edit/{id}");
+
+        }
+}

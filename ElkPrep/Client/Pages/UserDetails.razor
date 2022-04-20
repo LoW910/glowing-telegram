@@ -6,7 +6,7 @@
     @foreach (var person in searchUserData)
     {
         <EditForm Model="@user"class="form">
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-sm-4">
                     <label for="firstName">First Name</label>
                     <InputText class="form-control" id="firstName" @bind-Value="person.FirstName"></InputText>
@@ -18,6 +18,10 @@
                 <div class="col-sm-2">
                     <label for="age">Age</label>
                     <InputNumber class="form-control"  id="age" @bind-Value="person.Age"></InputNumber>
+                </div>
+                <div class="col-sm-1 mt-4">
+                    <DeleteButton Id=@person.Id />
+                    <EditButton Id=@person.Id />
                 </div>
             </div>
         </EditForm>
@@ -32,14 +36,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await GetUsers();
+        await GetAllUsers();
     }
 
-    protected async Task GetUsers()
+    protected async Task GetAllUsers()
     {
         userList = await Http.GetFromJsonAsync<List<User>>("/api/user");
         searchUserData = userList;
     }
+
 
 
 }

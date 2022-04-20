@@ -19,7 +19,7 @@ namespace ElkPrep.Server.Controllers
 
         // Get list of all users
         [HttpGet("")]
-        public async Task<List<User>> GetUsers()
+        public async Task<List<User>> GetAllUsers()
         {
             return await Task.FromResult(_IUser.GetAllUsers());
         }

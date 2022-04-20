@@ -1,0 +1,17 @@
+﻿@inject HttpClient Http;
+@inject NavigationManager NavigationManager;
+
+<button class="btn btn-danger" @onclick="(() => RemoveUser(Id))">Remove</button>
+
+@code {
+
+        [Parameter]
+        public int Id { get; set; }
+
+        public async Task RemoveUser(int id)
+        {
+            await Http.DeleteAsync($"/api/user/delete/{id}");
+            NavigationManager.NavigateTo("/");
+
+        }
+}

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElkPrep.Server", "ElkPrep\Server\ElkPrep.Server.csproj", "{417CB2CD-A769-480A-AB1A-5A95DBF93BE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElkPrep.Server", "ElkPrep\Server\ElkPrep.Server.csproj", "{417CB2CD-A769-480A-AB1A-5A95DBF93BE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElkPrep.Client", "ElkPrep\Client\ElkPrep.Client.csproj", "{5A81CF8A-8ED4-40A6-BF4A-015971063FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElkPrep.Client", "ElkPrep\Client\ElkPrep.Client.csproj", "{5A81CF8A-8ED4-40A6-BF4A-015971063FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElkPrep.Shared", "ElkPrep\Shared\ElkPrep.Shared.csproj", "{BC080259-AA7F-4343-BE8D-5F552C753C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElkPrep.Shared", "ElkPrep\Shared\ElkPrep.Shared.csproj", "{BC080259-AA7F-4343-BE8D-5F552C753C94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
